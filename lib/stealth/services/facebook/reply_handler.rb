@@ -394,12 +394,10 @@ module Stealth
                 button = {
                   "type" => "web_url",
                   "url" => button["url"],
-                  "title" => button["text"]
-                }
-
-                if button["webview_height"].present?
-                  button["webview_height_ratio"] = button["webview_height"]
-                end
+                  "title" => button["text"],
+                  "webview_height_ratio" => button["webview_height_ratio"],
+                  "messenger_extensions" => button["messenger_extensions"]
+                }.compact
 
                 button
 
