@@ -218,11 +218,11 @@ module Stealth
             }
 
             if sharable.present?
-              template["message"]["payload"]["sharable"] = sharable
+              template["message"]["attachment"]["payload"]["sharable"] = sharable
             end
 
             if aspect_ratio.present?
-              template["message"]["payload"]["image_aspect_ratio"] = aspect_ratio
+              template["message"]["attachment"]["payload"]["image_aspect_ratio"] = aspect_ratio
             end
 
             template
@@ -437,12 +437,10 @@ module Stealth
           def generate_default_action(action_params:)
             default_action = {
               "type" => "web_url",
-              "url" => action_params["url"]
-            }
-
-            if action_params["webview_height"].present?
-              action_params["webview_height_ratio"] = action_params["webview_height"]
-            end
+              "url" => action_params["url"],
+              "webview_height_ratio" => action_params["webview_height_ratio"],
+              "messenger_extensions" => action_params["messenger_extensions"]
+            }.compact
 
             default_action
           end
